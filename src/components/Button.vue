@@ -1,5 +1,5 @@
 <template>
-<button class="button"><span :class="iconPosition">{{title}}</span>
+<button @click="$emit('click', $event)" :disabled="disabledBtn" class="button"><span :class="iconPosition">{{title}}</span>
     <slot />
 </button>
 </template>
@@ -9,8 +9,11 @@ export default {
     name: "Button",
     props: {
         title: String,
-        icon: String,
-        iconPosition: String
+        iconPosition: String,
+        disabledBtn: {
+            type: Boolean,
+            default: false
+        }
     },
 };
 </script>
@@ -26,11 +29,20 @@ export default {
     justify-content: space-between;
     background-color: $truckoo-blue-80;
     color: $truckoo-blue-20;
-    width: 100%;
+
+    &:disabled {
+        background-color: $truckoo-blue-10;
+        pointer-events: none;
+    }
 
     &:hover {
         background-color: $truckoo-blue-40;
         color: $truckoo-blue-100;
+    }
+
+    &.active {
+        background-color: $truckoo-yellow;
+        color: $truckoo-dark-blue;
     }
 
     span {

@@ -1,5 +1,5 @@
 <template>
-<input class="input" :type="type ? type : 'text'" :placeholder="placeholder" autocomplete="off" />
+<input class="input" :type="type ? type : 'text'" :value="value" :placeholder="placeholder" @input="$emit('input', $event.target.value)" autocomplete="off" />
 </template>
 
 <script>
@@ -7,7 +7,8 @@ export default {
     name: "Input",
     props: {
         placeholder: String,
-        type: String
+        type: String,
+        value: String
     },
 };
 </script>

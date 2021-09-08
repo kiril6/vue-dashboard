@@ -1,6 +1,6 @@
 <template>
 <aside class="sidebar">
-    <router-link to="/dashboard"><Button title="Dashboard" icon-position="right">
+    <router-link to="/dashboard/panel"><Button title="Dashboard" icon-position="right">
             <dashboard-icon size="14px" /></Button></router-link>
     <router-link to="/"><Button title="Logout" icon-position="right">
             <logout-icon size="14px" /></Button></router-link>
@@ -13,21 +13,18 @@ export default {
     name: "Sidebar",
     components: {
         Button,
-    },
-    props: {
-        msg: String,
-    },
+    }
 };
 </script>
 
 <style lang="scss" scoped>
 .sidebar {
-    background-color: $truckoo-blue-100;
     width: 200px;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: $truckoo-blue-100;
 
     a:link {
         width: 80%;
@@ -39,7 +36,7 @@ export default {
         .button {
             margin-bottom: 10px;
             height: 40px;
-
+            width: 100%;
         }
     }
 }

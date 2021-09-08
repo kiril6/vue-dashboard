@@ -1,12 +1,11 @@
 <template>
 <div class="login">
     <Title heading="h1" title="Login to Truckoo Dashboard" />
-
-    <Input placeholder="username" />
-    <Input placeholder="password" type="password" />
-    <router-link to="/dashboard"><Button title="login" icon-position="left">
-            <login-icon size="14px" /></Button></router-link>
-    <!-- include components like button etc -->
+    <Input placeholder="username or email" v-model="username" />
+    <Input placeholder="password" type="password" v-model="password" />
+    <small v-text="error" class="error"></small>
+    <Button @click="login()" title="login" icon-position="left">
+        <login-icon size="14px" /></Button>
 </div>
 </template>
 
@@ -16,12 +15,28 @@ import Input from "@/components/Input.vue";
 import Button from "@/components/Button.vue";
 
 export default {
-    name: "Login",
+    data: () => {
+        return {
+            username: '',
+            password: '',
+            error: ''
+        }
+    },
     components: {
         Title,
         Input,
         Button
     },
+
+    methods: {
+        login() {
+            if (this.username && this.password) {
+                this.$router.push('/dashboard');
+            } else {
+                this.error = 'fill the fields in order to login';
+            }
+        }
+    }
 };
 </script>
 
@@ -44,6 +59,10 @@ export default {
 
     .button {
         margin-bottom: 20px;
+    }
+
+    .error {
+        color: $error;
     }
 }
 </style>
